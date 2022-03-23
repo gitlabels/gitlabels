@@ -4,7 +4,8 @@
   "description": "Manage labels for repository.",
   "main": "src/main.ts",
   "scripts": {
-    "build": "ncc build -o dist src/main.ts"
+    "build": "ncc build -o dist src/main.ts",
+    "ci": "yarn install --immutable --immutable-cache --check-cache"
   },
   "repository": "https://github.com/gitlabels/gitlabels-action.git",
   "keywords": [
