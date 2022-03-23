@@ -1,0 +1,8 @@
+name: 'gitlabels'
+description: 'Manage labels for repository.'
+branding:
+  icon: play
+  color: green
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

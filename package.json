@@ -1,0 +1,15 @@
+{
+  "name": "gitlabels-action",
+  "version": "0.1.0",
+  "description": "Manage labels for repository.",
+  "main": "src/main.ts",
+  "repository": "https://github.com/gitlabels/gitlabels-action.git",
+  "keywords": [
+    "actions",
+    "labels",
+    "gitlabels",
+    "management"
+  ],
+  "author": "Jozef Izso",
+  "license": "MIT"
+}
