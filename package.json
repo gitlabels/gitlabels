@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Manage labels for repository.",
   "main": "src/main.ts",
+  "scripts": {
+    "build": "ncc build -o dist src/main.ts"
+  },
   "repository": "https://github.com/gitlabels/gitlabels-action.git",
   "keywords": [
     "actions",
@@ -11,5 +14,14 @@
     "management"
   ],
   "author": "Jozef Izso",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.6.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/node": "^16.11.26",
+    "@vercel/ncc": "^0.33.3",
+    "typescript": "^4.6.2"
+  }
 }

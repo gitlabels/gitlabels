@@ -1,0 +1,9 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "sourceMap": true
+  },
+  "exclude": ["__tests__", "lib", "node_modules"]
+}

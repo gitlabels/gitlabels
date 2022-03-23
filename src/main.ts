@@ -1,5 +1,17 @@
+const core = require('@actions/core');
+
 async function run() {
-  // implement
+  try {
+    
+  }
+  catch (error) {
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    }
+    else {
+      core.setFailed(error);
+    }
+  }
 }
 
 run();
