@@ -8345,6 +8345,7 @@ async function run() {
     try {
         const owner = process_1.env.GITHUB_REPOSITORY_OWNER || '';
         const repo = process_1.env.GITHUB_REPOSITORY?.substring(owner.length + 1);
+        core.notice(`Auth token ${process_1.env.GITHUB_TOKEN?.length}`);
         const octokit = new Octokit({
             auth: process_1.env.GITHUB_TOKEN,
             userAgent: 'gitlabels-action',
@@ -8355,8 +8356,6 @@ async function run() {
         }
         let content = await readFile(labelsPath);
         let labels = JSON.parse(content);
-        core.notice(`labels: ${typeof (labels)}`);
-        core.notice(`labels: ${labels}`);
         if (!labels.forEach) {
             core.setFailed('labels.json file must contain array of label definitions.');
             return;
@@ -8365,15 +8364,21 @@ async function run() {
             var name = newLabel.name;
             var color = newLabel.color;
             var description = newLabel.description;
-            await octokit.rest.issues.updateLabel({
-                owner,
-                repo,
-                name,
-                new_name: name,
-                color,
-                description
-            });
-            core.info(`Label ${name} updated.`);
+            core.notice(`Updating label ${name}.`);
+            try {
+                await octokit.rest.issues.updateLabel({
+                    owner,
+                    repo,
+                    name,
+                    new_name: name,
+                    color,
+                    description
+                });
+                core.info(`Label ${name} updated.`);
+            }
+            catch (error) {
+                core.setFailed(`Label ${name} was not updated. Error: ${error}`);
+            }
         });
     }
     catch (error) {
