@@ -29,7 +29,7 @@ async function run() {
     let content = await readFile(labelsPath);
     let labels = JSON.parse(content);
 
-    if (labels !instanceof Array) {
+    if (!labels.forEach) {
       core.setFailed('labels.json file must contain array of label definitions.')
       return
     }
