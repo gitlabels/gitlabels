@@ -8344,11 +8344,11 @@ const { readFile } = __nccwpck_require__(3292);
 async function run() {
     try {
         const owner = process_1.env.GITHUB_REPOSITORY_OWNER || '';
-        // TODO: the GITHUB_REPOSITORY is invalid
         const repo = process_1.env.GITHUB_REPOSITORY?.substring(owner.length + 1);
         const octokit = new Octokit({
             auth: process_1.env.GITHUB_TOKEN,
             userAgent: 'gitlabels-action',
+            baseUrl: process_1.env.GITHUB_API_URL,
         });
         const labelsPath = '.github/labels.json';
         if (!fs.existsSync(labelsPath)) {
@@ -8356,7 +8356,7 @@ async function run() {
         }
         let content = await readFile(labelsPath);
         let labels = JSON.parse(content);
-        if (labels instanceof Array) {
+        if (!labels.forEach) {
             core.setFailed('labels.json file must contain array of label definitions.');
             return;
         }

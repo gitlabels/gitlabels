@@ -19,6 +19,7 @@ async function run() {
     const octokit = new Octokit({
       auth: env.GITHUB_TOKEN,
       userAgent: 'gitlabels-action',
+      baseUrl: env.GITHUB_API_URL,
     })
 
     const labelsPath = '.github/labels.json';
