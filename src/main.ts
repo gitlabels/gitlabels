@@ -1,8 +1,8 @@
 import { env } from "process";
 
 const core = require('@actions/core');
-const github = require("@actions/octokit");
-const { GitHub } = require("@actions/octokit/utils");
+const github = require("@actions/github");
+const { GitHub } = require("@actions/github/utils");
 const fs = require('fs');
 const { readFile } = require('fs/promises');
 
@@ -14,7 +14,7 @@ interface LabelUpdate {
 
 async function run() {
   try {
-    const token = env.GITHU_TOKEN
+    const token = env.GITHUB_TOKEN
     const repo = github.context.repo
 
     const octokit = github.getOctokit(token, {
