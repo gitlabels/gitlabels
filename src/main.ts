@@ -1,7 +1,7 @@
 import { env } from "process";
 
 const core = require('@actions/core');
-const { Octokit } = require("@octokit/rest");
+const github = require("@actions/octokit");
 const fs = require('fs');
 const { readFile } = require('fs/promises');
 
@@ -15,11 +15,10 @@ async function run() {
   try {
     const owner = env.GITHUB_REPOSITORY_OWNER || ''
     const repo = env.GITHUB_REPOSITORY?.substring(owner.length + 1)
+    const token = env.GITHU_TOKEN
 
-    const octokit = new Octokit({
-      auth: env.GITHUB_TOKEN,
-      userAgent: 'gitlabels-action',
-      baseUrl: env.GITHUB_API_URL,
+    const octokit = github.getOctokit(token, {
+      userAgent: 'gitlabels-action'
     })
 
     const labelsPath = '.github/labels.json';
