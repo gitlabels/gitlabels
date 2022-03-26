@@ -1563,6 +1563,14 @@ module.exports = eval("require")("@actions/octokit");
 
 /***/ }),
 
+/***/ 798:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/octokit/utils");
+
+
+/***/ }),
+
 /***/ 491:
 /***/ ((module) => {
 
@@ -1707,13 +1715,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const process_1 = __nccwpck_require__(282);
 const core = __nccwpck_require__(186);
 const github = __nccwpck_require__(102);
+const { GitHub } = __nccwpck_require__(798);
 const fs = __nccwpck_require__(147);
 const { readFile } = __nccwpck_require__(292);
 async function run() {
     try {
-        const owner = process_1.env.GITHUB_REPOSITORY_OWNER || '';
-        const repo = process_1.env.GITHUB_REPOSITORY?.substring(owner.length + 1);
         const token = process_1.env.GITHU_TOKEN;
+        const repo = github.context.repo;
         const octokit = github.getOctokit(token, {
             userAgent: 'gitlabels-action'
         });
@@ -1727,19 +1735,35 @@ async function run() {
             core.setFailed('labels.json file must contain array of label definitions.');
             return;
         }
+        let existingLabels = await listLabelsForRepo(octokit, repo);
         labels.forEach(async (newLabel) => {
             var name = newLabel.name;
             var color = newLabel.color;
             var description = newLabel.description;
-            await octokit.rest.issues.updateLabel({
-                owner,
-                repo,
-                name,
-                new_name: name,
-                color,
-                description
-            });
-            core.info(`Label ${name} updated.`);
+            try {
+                if (labelExists(existingLabels, name)) {
+                    core.info(`Updating label ${name}`);
+                    await octokit.rest.issues.updateLabel({
+                        ...repo,
+                        name,
+                        new_name: name,
+                        color,
+                        description
+                    });
+                }
+                else {
+                    core.info(`Creating label ${name}`);
+                    await octokit.rest.issues.createLabel({
+                        ...repo,
+                        name,
+                        color,
+                        description
+                    });
+                }
+            }
+            catch (error) {
+                core.setFailed(`Failed to update label '${name}'. Error: ${error}`);
+            }
         });
     }
     catch (error) {
@@ -1750,6 +1774,14 @@ async function run() {
             core.setFailed(error);
         }
     }
+}
+async function listLabelsForRepo(octokit, repo) {
+    let reponse = await octokit.rest.issues.listLabelsForRepo({ ...repo });
+    return reponse.data;
+}
+function labelExists(labels, name) {
+    let existingLabel = labels.find(label => label.name === name);
+    return existingLabel != null;
 }
 run();
 
