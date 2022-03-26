@@ -8299,14 +8299,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 1515:
-/***/ ((module) => {
-
-module.exports = eval("require")("@actions/github/utils");
-
-
-/***/ }),
-
 /***/ 2877:
 /***/ ((module) => {
 
@@ -8499,7 +8491,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const process_1 = __nccwpck_require__(7282);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
-const { GitHub } = __nccwpck_require__(1515);
 const fs = __nccwpck_require__(7147);
 const { readFile } = __nccwpck_require__(3292);
 async function run() {

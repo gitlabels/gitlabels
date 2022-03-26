@@ -2,7 +2,6 @@ import { env } from "process";
 
 const core = require('@actions/core');
 const github = require("@actions/github");
-const { GitHub } = require("@actions/github/utils");
 const fs = require('fs');
 const { readFile } = require('fs/promises');
 
