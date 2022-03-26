@@ -19,7 +19,7 @@ async function run() {
     core.notice(`Auth token ${env.GITHUB_TOKEN?.length}`)
     
     const octokit = new Octokit({
-      auth: env.GITHUB_TOKEN,
+      auth: env.AUTH_TOKEN,
       userAgent: 'gitlabels-action',
     })
 

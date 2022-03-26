@@ -8347,7 +8347,7 @@ async function run() {
         const repo = process_1.env.GITHUB_REPOSITORY?.substring(owner.length + 1);
         core.notice(`Auth token ${process_1.env.GITHUB_TOKEN?.length}`);
         const octokit = new Octokit({
-            auth: process_1.env.GITHUB_TOKEN,
+            auth: process_1.env.AUTH_TOKEN,
             userAgent: 'gitlabels-action',
         });
         const labelsPath = '.github/labels.json';
