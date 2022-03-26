@@ -5,14 +5,33 @@
 
 ## Usage
 
-See [action.yml](action.yml)
-
-Basic:
+Basic usage of the **gitlabels** action. The `GITHUB_TOKEN` token must
+be passed as environment variable.
 
 ```yaml
 steps:
 - uses: actions/checkout@v3
 - uses: gitlabels/gitlabels-action@v1
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+The action requires the `issues: write` permission when using the `GITHUB_TOKEN` token.
+
+```yaml
+name: labels
+
+permissions:
+  issues: write
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: gitlabels/gitlabels-action@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 
