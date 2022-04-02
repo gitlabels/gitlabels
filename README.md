@@ -1,4 +1,4 @@
-# gitlabels-action
+# gitlabels
 
 > This action configures labels in a repository based on **labels.json** file.
 
