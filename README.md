@@ -11,7 +11,7 @@ be passed as environment variable.
 ```yaml
 steps:
 - uses: actions/checkout@v3
-- uses: gitlabels/gitlabels-action@v1
+- uses: gitlabels/gitlabels@v1
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: gitlabels/gitlabels-action@main
+      - uses: gitlabels/gitlabels@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```

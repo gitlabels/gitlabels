@@ -1,5 +1,5 @@
 {
-  "name": "gitlabels-action",
+  "name": "gitlabels",
   "version": "0.1.0",
   "description": "Manage labels for repository.",
   "main": "src/main.ts",
@@ -7,7 +7,7 @@
     "build": "ncc build -o dist src/main.ts",
     "ci": "yarn install --immutable --immutable-cache --check-cache"
   },
-  "repository": "https://github.com/gitlabels/gitlabels-action.git",
+  "repository": "https://github.com/gitlabels/gitlabels.git",
   "keywords": [
     "actions",
     "labels",
