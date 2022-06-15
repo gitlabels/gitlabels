@@ -22,6 +22,7 @@ The action requires the `issues: write` permission when using the `GITHUB_TOKEN`
 name: labels
 
 permissions:
+  contents: read
   issues: write
 
 jobs:
