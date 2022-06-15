@@ -41,6 +41,10 @@ async function run() {
       var description = newLabel.description;
 
       try {
+        if (color.startsWith('#')) {
+          color = color.substring(1);
+        }
+
         if (labelExists(existingLabels, name)) {
           core.info(`Updating label ${name}`)
 
