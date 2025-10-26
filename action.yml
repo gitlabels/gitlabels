@@ -4,5 +4,5 @@ branding:
   icon: tag
   color: yellow
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
