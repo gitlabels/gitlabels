@@ -7,8 +7,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "build": "ncc build -o dist src/main.ts",
-    "ci": "yarn install --immutable --immutable-cache --check-cache"
+    "build": "ncc build -o dist src/main.ts"
   },
   "repository": "https://github.com/gitlabels/gitlabels.git",
   "keywords": [
