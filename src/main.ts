@@ -1,9 +1,7 @@
-import { env } from "process";
-
-const core = require('@actions/core');
-const github = require("@actions/github");
-const fs = require('fs');
-const { readFile } = require('fs/promises');
+import * as core from "@actions/core";
+import * as github from "@actions/github";
+import fs from "fs";
+import { readFile } from "fs/promises";
 
 interface LabelUpdate {
   name: string;
@@ -13,7 +11,12 @@ interface LabelUpdate {
 
 async function run() {
   try {
-    const token = env.GITHUB_TOKEN
+    const token = process.env.GITHUB_TOKEN
+    if (!token) {
+      core.setFailed("GITHUB_TOKEN environment variable is required.")
+      return
+    }
+
     const repo = github.context.repo
 
     const octokit = github.getOctokit(token, {
@@ -25,7 +28,7 @@ async function run() {
       return;
     }
 
-    let content = await readFile(labelsPath);
+    let content = await readFile(labelsPath, "utf8");
     let labels = JSON.parse(content);
 
     if (!labels.forEach) {
@@ -77,7 +80,7 @@ async function run() {
       core.setFailed(error.message);
     }
     else {
-      core.setFailed(error);
+      core.setFailed(String(error));
     }
   }
 }

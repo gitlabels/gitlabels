@@ -3,9 +3,12 @@
   "version": "2.0.2",
   "description": "Manage labels for repository.",
   "main": "src/main.ts",
+  "type": "module",
+  "engine": {
+    "node": ">=24"
+  },
   "scripts": {
-    "build": "ncc build -o dist src/main.ts",
-    "ci": "yarn install --immutable --immutable-cache --check-cache"
+    "build": "ncc build -o dist src/main.ts"
   },
   "repository": "https://github.com/gitlabels/gitlabels.git",
   "keywords": [
@@ -17,13 +20,13 @@
   "author": "Jozef Izso",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.1"
+    "@actions/core": "^3.0.1",
+    "@actions/github": "^9.1.1"
   },
   "devDependencies": {
-    "@tsconfig/node24": "^24.0.1",
-    "@types/node": "^24.6.2",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/node": "^24.12.2",
     "@vercel/ncc": "^0.38.4",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }
