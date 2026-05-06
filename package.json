@@ -1,6 +1,6 @@
 {
   "name": "gitlabels",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Manage labels for repository.",
   "main": "src/main.ts",
   "type": "module",
