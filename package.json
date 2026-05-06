@@ -3,6 +3,7 @@
   "version": "2.0.2",
   "description": "Manage labels for repository.",
   "main": "src/main.ts",
+  "type": "module",
   "engine": {
     "node": ">=24"
   },
